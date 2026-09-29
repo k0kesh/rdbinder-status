@@ -1,31 +1,36 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+owner: k0kesh
+repo: rdbinder-status
 
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  - name: Marketing site
+    url: https://rdbinder.com
+  - name: Marketing site (www)
+    url: https://www.rdbinder.com
+  - name: Sample binders
+    url: https://rdbinder.com/sample
+  - name: Order and review API
+    url: https://api.rdbinder.com/health
+  - name: AI crawler access (GEO canary)
+    # GEO tripwire: answer-engine SEARCH crawlers must keep getting 200, or AI
+    # citation silently dies. If Cloudflare Super Bot Fight Mode ("Block AI bots")
+    # is ever enabled on this zone, the OAI-SearchBot user-agent gets 403 and this
+    # check trips. Origin: the rdbinder.com SBFM incident 2026-06-01.
+    url: https://rdbinder.com/
+    headers:
+      - "User-Agent: Mozilla/5.0 (compatible; OAI-SearchBot/1.0; +https://openai.com/searchbot)"
+    expectedStatusCodes:
+      - 200
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  cname: status.rdbinder.com
+  name: R&D Binder Status
+  introTitle: "R&D Binder service status"
+  introMessage: "Uptime and response-time monitoring for R&D Binder's customer-facing services, checked every 5 minutes. Incidents are listed in the GitHub Issues tab."
   navbar:
     - title: Status
       href: /
     - title: GitHub
-      href: https://github.com/$OWNER/$REPO
+      href: https://github.com/k0kesh/rdbinder-status
 
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+assignees:
+  - k0kesh
